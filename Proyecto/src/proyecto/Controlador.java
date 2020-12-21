@@ -15,26 +15,10 @@ import javax.swing.JFrame;
  */
 public class Controlador extends JFrame implements KeyListener{
  
-    Controlador(){
-        addKeyListener(this);
-        
+    Controlador(JFrame input){
+        input.addKeyListener(this);
     }  
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        Controlador c= new Controlador();
-        c.setSize(500, 150);
-        c.setVisible(true);
-    }
-
-    @Override
-    public void keyTyped(KeyEvent ke) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   
     @Override
     public void keyPressed(KeyEvent ke) {
         switch (ke.getKeyCode()) {
@@ -57,12 +41,22 @@ public class Controlador extends JFrame implements KeyListener{
                 break;
         }
     }
-
+    
+    @Override
+    public void keyTyped(KeyEvent ke) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     @Override
     public void keyReleased(KeyEvent ke) {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
     
     
     //Aca debe ir un metodo que envie la informacion de la tecla presionada a la consola
+    
+    
+    
+    
+    
 }
