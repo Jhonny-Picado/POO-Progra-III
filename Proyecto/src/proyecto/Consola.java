@@ -7,11 +7,12 @@ package proyecto;
 
 /**
  *
- * @author Usuario
+ * @author Jhonny Picado
  */
 public class Consola {
         
     Consola(){
+        Servidor server = new Servidor(5000);
         
     }  
          

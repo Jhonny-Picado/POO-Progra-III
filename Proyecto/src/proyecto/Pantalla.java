@@ -49,7 +49,6 @@ public class Pantalla extends JFrame{
                 interfaz.add(Casillas[i][j]);
             }
         }
-        
         interfaz.setLayout(new GridLayout(50, 50));
     }
 }

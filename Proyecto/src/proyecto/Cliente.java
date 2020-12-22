@@ -7,31 +7,49 @@ package proyecto;
 
 import java.net.*;
 import java.io.*;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.simple.*;
 /**
  *
  * @author Usuario
  */
-public class Cliente {
-    ServerSocket server;
-    Socket socket;
-    int puerto=9000;
-    DataOutputStream salida;
-    BufferedReader entrada;
+public class Cliente  {
+
+        private final String HOST = "127.0.0.1";
+        private int puerto;       
+        private DataInputStream in;
+        private DataOutputStream out;
+        
+        public Cliente(int port){
+            this.puerto=port;
+        }
+        
+        public void EnviarMensaje(String mensaje){
+            try {
+                Socket sc = new Socket(HOST, puerto);
+                //in = new DataInputStream(sc.getInputStream());
+                out = new DataOutputStream (sc.getOutputStream());
+                out.writeUTF(mensaje);
+                //System.out.println(in.readUTF());
+                //System.out.println("Si llega a cliente");
+                sc.close();
             
-    public void init(){
-        try{
-            server= new ServerSocket(puerto);
-            socket = new Socket();
-            socket = server.accept();
+            } catch (IOException ex) {
+                Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        /*
+        try {
+            Socket sc = new Socket(HOST, puerto);
+            //in = new DataInputStream(sc.getInputStream());
+            out = new DataOutputStream (sc.getOutputStream());
+            out.writeUTF("EXITOS");
+            //System.out.println(in.readUTF());
+            sc.close();
             
-            entrada = new BufferedReader ( new InputStreamReader(socket.getInputStream()));
-            
-            String mensaje= entrada.readLine();
-            System.out.print(mensaje);
-            
-            salida.writeUTF("Adios Mundo");
-            socket.close();
-        }catch(Exception e){};
-    }
+        } catch (IOException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
 }

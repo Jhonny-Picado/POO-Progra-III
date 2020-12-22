@@ -1,0 +1,10 @@
+{
+ "Direccion":
+   [
+   "Izquierda",
+   "Arriba",
+   "Derecha",
+   "Abajo",
+   "Espacio",
+]
+}
