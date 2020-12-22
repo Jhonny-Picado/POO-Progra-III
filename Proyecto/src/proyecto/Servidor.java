@@ -23,7 +23,8 @@ import org.json.simple.*;
 public class Servidor implements Runnable{
     
     private int puerto;
-
+    private Consola consola;
+    
     public Servidor (int port){
         puerto=port;
         Thread hilo= new Thread(this);
@@ -36,30 +37,29 @@ public class Servidor implements Runnable{
     public void run() {
     
         
-            ServerSocket servidor;
-            Socket socket;
-            DataInputStream in;
-            DataOutputStream out;
-    
-            try {
-                servidor = new ServerSocket(puerto);
-                while (true){
-               // System.out.println("Server iniciado");
+        ServerSocket servidor;
+        Socket socket;
+        DataInputStream in;
+        DataOutputStream out;
+
+        try {
+            servidor = new ServerSocket(puerto);
+            while (true) {
+                // System.out.println("Server iniciado");
                 socket = servidor.accept();
-                
-           // System.out.println("Cliente conectado");
+
+                // System.out.println("Cliente conectado");
                 in = new DataInputStream(socket.getInputStream());
-            //out = new DataOutputStream (socket.getOutputStream());
-                
-                
+                //out = new DataOutputStream (socket.getOutputStream());
+
                 String mensaje = in.readUTF();
-                
+
                 System.out.println(mensaje);
-            //out.writeUTF("MAYONESA");
+                //out.writeUTF("MAYONESA");
                 socket.close();
                 //System.out.println("Cliente desconectado");   
-                }
-            } catch (IOException ex) {
+            }
+        } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
         

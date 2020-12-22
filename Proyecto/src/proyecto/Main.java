@@ -18,6 +18,7 @@ public class Main {
         // TODO code application logic here
         Pantalla screen= new Pantalla();
         Consola con= new Consola();
+        
         Controlador c= new Controlador(screen);
     }
 }
