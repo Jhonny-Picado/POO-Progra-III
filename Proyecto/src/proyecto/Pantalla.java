@@ -24,16 +24,15 @@ public class Pantalla extends JFrame{
         this.setSize(720, 680);
         JPanel b= new JPanel();
         b.setBackground(Color.BLACK);
-        Tablero(b);
+        generarMatriz(b);
         this.add(b);
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);  
-        
     }
     
     //Metodo que genera la matriz del programa
-    public void Tablero(JPanel interfaz) {
+    public void generarMatriz(JPanel interfaz) {
         
         for(int i=0; i < Casillas.length; i++) {
             
@@ -50,5 +49,10 @@ public class Pantalla extends JFrame{
             }
         }
         interfaz.setLayout(new GridLayout(50, 50));
+    }
+    
+    
+    public void ModificarPixeles(int fila, int columna, Color color){
+        Casillas[fila][columna].setBackground(color);
     }
 }

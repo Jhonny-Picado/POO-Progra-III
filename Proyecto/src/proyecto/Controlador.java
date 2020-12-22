@@ -5,6 +5,7 @@
  */
 package proyecto;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileReader;
@@ -25,7 +26,7 @@ public class Controlador extends JFrame implements KeyListener{
     private static Cliente cliente;
     private static JSONArray arregloJson;
     
-    Controlador(JFrame input){
+    public Controlador(JFrame input){
         readJson();
         input.addKeyListener(this);
         cliente = new Cliente(5000);
@@ -77,7 +78,7 @@ public class Controlador extends JFrame implements KeyListener{
     
     
     //Lee el JSON y lo deja en el array a usar más arriba
-    public static void readJson(){
+    private static void readJson(){
       try {
 
         JSONParser parser = new JSONParser();

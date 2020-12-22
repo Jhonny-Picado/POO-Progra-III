@@ -10,10 +10,12 @@ package proyecto;
  * @author Jhonny Picado
  */
 public class Consola {
-        
+    Servidor server;
+    Cliente cliente;
+    
     Consola(){
-        Servidor server = new Servidor(5000);
-        
+       cliente= new Cliente (5005);
+       server = new Servidor(5000);
     }  
          
 }

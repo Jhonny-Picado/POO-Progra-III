@@ -5,6 +5,7 @@
  */
 package proyecto;
 
+import java.awt.Color;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -24,19 +25,17 @@ public class Servidor implements Runnable{
     
     private int puerto;
     private Consola consola;
-    
+    private Pantalla pantalla;
+   
     public Servidor (int port){
         puerto=port;
         Thread hilo= new Thread(this);
         hilo.start();
     }
-    
-    
-    
+
     @Override
     public void run() {
     
-        
         ServerSocket servidor;
         Socket socket;
         DataInputStream in;
@@ -53,8 +52,10 @@ public class Servidor implements Runnable{
                 //out = new DataOutputStream (socket.getOutputStream());
 
                 String mensaje = in.readUTF();
-
-                System.out.println(mensaje);
+                
+                
+                System.out.println(mensaje+puerto);
+                
                 //out.writeUTF("MAYONESA");
                 socket.close();
                 //System.out.println("Cliente desconectado");   
