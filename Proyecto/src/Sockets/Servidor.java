@@ -5,18 +5,14 @@
  */
 package Sockets;
 
-import java.awt.Color;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.json.simple.*;
 
 /**
  *
@@ -47,7 +43,7 @@ public class Servidor extends Observable implements Runnable{
 
                 in = new DataInputStream(socket.getInputStream());
 
-                String mensaje = in.readUTF();
+                Object mensaje = in.readUTF();
                 
                 this.setChanged();
                 this.notifyObservers(mensaje);

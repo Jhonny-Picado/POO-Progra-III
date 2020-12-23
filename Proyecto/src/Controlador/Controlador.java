@@ -88,10 +88,6 @@ public class Controlador extends JFrame implements KeyListener{
         JSONObject config = new JSONObject (object.toString());
 
         arregloJson = config.getJSONArray("Direccion");
-        
-
-      // String verb = (String) arregloJson.get(0);
-       //System.out.println(verb);
 
     } catch (IOException e) {
         System.out.println("Excepcion leyendo fichero de configuracion " + e);

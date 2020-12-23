@@ -29,9 +29,8 @@ public class Cliente{
                 Socket sc = new Socket(HOST, puerto);
                 out = new DataOutputStream (sc.getOutputStream());
                 out.writeUTF(mensaje);
-
                 sc.close();
-            
+                
             } catch (IOException ex) {
                 Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
             }

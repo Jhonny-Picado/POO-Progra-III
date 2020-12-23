@@ -11,10 +11,15 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -67,7 +72,7 @@ public class Pantalla extends JFrame implements Observer{
 
     @Override
     public void update(Observable o, Object o1) {
-        this.ModificarPixeles((String) o1);
+        this.ModificarPixeles(o1.toString());
     }
 }
 

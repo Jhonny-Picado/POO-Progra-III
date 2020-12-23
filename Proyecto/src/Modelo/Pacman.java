@@ -9,6 +9,11 @@ import Sockets.Cliente;
 import Sockets.Servidor;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 /**
@@ -33,6 +38,6 @@ public class Pacman implements Observer{
 
     @Override
     public void update(Observable o, Object o1) {
-        this.IMPRIMIR((String) o1);
+        this.IMPRIMIR(o1.toString());
     }
 }
