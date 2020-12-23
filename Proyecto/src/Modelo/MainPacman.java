@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto;
+package Modelo;
+
+import Controlador.Controlador;
+import Vista.Pantalla;
 
 /**
  * Clase main que invoca la aplicacion
- * @author Jhonny Picado
+ * @author Jhonny Picado Vega
  */
-public class Main {
+public class MainPacman {
      
     /**
      * @param args
@@ -17,8 +20,7 @@ public class Main {
    public static void main(String[] args) {
         // TODO code application logic here
         Pantalla screen= new Pantalla();
-        Consola con= new Consola();
-        
-        Controlador c= new Controlador(screen);
+        Pacman pacman= new Pacman();
+        Controlador control= new Controlador(screen);
     }
 }

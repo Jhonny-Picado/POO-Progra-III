@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto;
+package Controlador;
 
+import Sockets.Cliente;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -82,7 +83,7 @@ public class Controlador extends JFrame implements KeyListener{
       try {
 
         JSONParser parser = new JSONParser();
-        Object object =  parser.parse(new FileReader("C:\\Users\\Usuario\\Documents\\Josué TEC\\Git-hub\\Programación Orientada a Objetos\\POO-Progra-III\\Proyecto\\src\\proyecto\\Controlador.json"));
+        Object object =  parser.parse(new FileReader("C:\\Users\\Usuario\\Documents\\Josué TEC\\Git-hub\\Programación Orientada a Objetos\\POO-Progra-III\\Proyecto\\src\\Controlador\\Controlador.json"));
         
         JSONObject config = new JSONObject (object.toString());
 

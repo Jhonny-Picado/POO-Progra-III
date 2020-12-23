@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto;
+package Sockets;
 
 import java.awt.Color;
 import java.io.DataInputStream;
@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.*;
@@ -21,18 +22,16 @@ import org.json.simple.*;
  *
  * @author Usuario
  */
-public class Servidor implements Runnable{
+public class Servidor extends Observable implements Runnable{
     
     private int puerto;
-    private Consola consola;
-    private Pantalla pantalla;
    
     public Servidor (int port){
-        puerto=port;
+        this.puerto=port;
         Thread hilo= new Thread(this);
         hilo.start();
     }
-
+    
     @Override
     public void run() {
     
@@ -44,21 +43,17 @@ public class Servidor implements Runnable{
         try {
             servidor = new ServerSocket(puerto);
             while (true) {
-                // System.out.println("Server iniciado");
                 socket = servidor.accept();
 
-                // System.out.println("Cliente conectado");
                 in = new DataInputStream(socket.getInputStream());
-                //out = new DataOutputStream (socket.getOutputStream());
 
                 String mensaje = in.readUTF();
                 
-                
-                System.out.println(mensaje+puerto);
-                
-                //out.writeUTF("MAYONESA");
+                this.setChanged();
+                this.notifyObservers(mensaje);
+                this.clearChanged();
                 socket.close();
-                //System.out.println("Cliente desconectado");   
+                  
             }
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
