@@ -9,6 +9,7 @@ import Sockets.Cliente;
 import Sockets.Servidor;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JOptionPane;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
@@ -29,38 +30,157 @@ public class Pacman implements Observer{
         server.addObserver(this);
         cliente= new Cliente (5005);
         GenerarMatrizInicial();
-    }  
-    
-    private void RealizarAccion(String action){
-        
-        //cliente.EnviarMensaje(Matriz);
-        
-    }    
-    
+    }      
 
     @Override
     public void update(Observable o, Object o1) {
         
         String mensaje= (String)o1;
+        int [][]tmp=pacman;
+        JSONArray arregloJson = new JSONArray();
         
         if ("Izquierda".equals(mensaje)){
-            
-        }
-        else if("Derecha".equals(mensaje)){
-            
-        }
-        else if ("Arriba".equals(mensaje)){
-            
-        }
-        else if("Abajo".equals(mensaje)){
-            
-        }
-        else{
-            
+            if (matriz[tmp[0][0]][tmp[0][1]-1]<2 && matriz[tmp[3][0]][tmp[3][1]-1]<2 && matriz[tmp[6][0]][tmp[6][1]-1]<2){
+                
+                if (matriz[tmp[0][0]][tmp[0][1]-1]==1)
+                    frutas--;
+                if (matriz[tmp[3][0]][tmp[3][1]-1]==1)
+                    frutas--;
+                if (matriz[tmp[6][0]][tmp[6][1]-1]==1)
+                    frutas--;
+                
+                for (int i=0; i<tmp.length; i++){
+                    if (i==2 || i==5 || i==8){
+                        matriz[tmp[i][0]][tmp[i][1]]=0;
+                        int [] n={tmp[i][0],tmp[i][1],0};
+                        arregloJson.put(n);
+                    }
+                    pacman[i][1]-=1;
+                    int [] n={pacman[i][0],pacman[i][1],pacman[i][2]};
+                    arregloJson.put(n);
+                }
+                
+                JSONObject j= new JSONObject();
+                j.put("Datos", arregloJson);
+                cliente.EnviarMensaje(j.toString());
+            }
+            else System.out.println("HOLA");
         }
 
-        //System.out.println(o1);
+        else if("Derecha".equals(mensaje)){
+
+            if (matriz[tmp[2][0]][tmp[2][1]+1]<2 && matriz[tmp[5][0]][tmp[5][1]+1]<2 && matriz[tmp[8][0]][tmp[8][1]+1]<2){
+                
+                if (matriz[tmp[2][0]][tmp[2][1]+1]==1)  
+                    frutas--;
+                if (matriz[tmp[5][0]][tmp[5][1]+1]==1)
+                    frutas--;
+                if (matriz[tmp[8][0]][tmp[8][1]+1]==1)
+                    frutas--;
+                
+                for (int i=0; i<tmp.length; i++){
+                    if (i==0 || i==3 || i==6){
+                        matriz[tmp[i][0]][tmp[i][1]]=0;
+                        int [] n={tmp[i][0],tmp[i][1],0};
+                        arregloJson.put(n);
+                    }
+                    pacman[i][1]+=1;
+                    int [] n={pacman[i][0],pacman[i][1],pacman[i][2]};
+                    arregloJson.put(n);
+                }
+                
+                JSONObject j= new JSONObject();
+                j.put("Datos", arregloJson);
+                cliente.EnviarMensaje(j.toString());
+            }
+            else System.out.println("HOLA");
+        }
         
+        
+        else if ("Arriba".equals(mensaje)){
+            if (matriz[tmp[0][0]-1][tmp[0][1]]<2 && matriz[tmp[1][0]-1][tmp[1][1]]<2 && matriz[tmp[2][0]-1][tmp[2][1]]<2){
+                
+                if (matriz[tmp[0][0]-1][tmp[0][1]]==1)
+                    frutas--;
+                if (matriz[tmp[1][0]-1][tmp[1][1]]==1) 
+                    frutas--;
+                if (matriz[tmp[2][0]-1][tmp[2][1]]==1)
+                    frutas--;
+                
+                for (int i=0; i<tmp.length; i++){
+                    if (i==6 || i==7 || i==8){
+                        matriz[tmp[i][0]][tmp[i][1]]=0;
+                        int [] n={tmp[i][0],tmp[i][1],0};
+                        arregloJson.put(n);
+                    }
+                    pacman[i][0]-=1;
+                    int [] n={pacman[i][0],pacman[i][1],pacman[i][2]};
+                    arregloJson.put(n);
+                }
+                
+                JSONObject j= new JSONObject();
+                j.put("Datos", arregloJson);
+                cliente.EnviarMensaje(j.toString());
+            }
+            else System.out.println("HOLA");
+        }
+        
+        else if("Abajo".equals(mensaje)){
+            
+            if (matriz[tmp[6][0]+1][tmp[6][1]]<2 && matriz[tmp[7][0]+1][tmp[7][1]]<2 && matriz[tmp[8][0]+1][tmp[8][1]]<2){
+                
+                if (matriz[tmp[6][0]+1][tmp[6][1]]==1)
+                    frutas--;
+                if (matriz[tmp[7][0]+1][tmp[7][1]]==1) 
+                    frutas--;
+                if  (matriz[tmp[8][0]+1][tmp[8][1]]==1)
+                    frutas--;
+                    
+                for (int i=0; i<tmp.length; i++){
+                    if (i==0 || i==1 || i==2){
+                        matriz[tmp[i][0]][tmp[i][1]]=0;
+                        int [] n={tmp[i][0],tmp[i][1],0};
+                        arregloJson.put(n);
+                    }
+                    pacman[i][0]+=1;
+                    int [] n={pacman[i][0],pacman[i][1],pacman[i][2]};
+                    arregloJson.put(n);
+                }
+                
+                JSONObject j= new JSONObject();
+                j.put("Datos", arregloJson);
+                cliente.EnviarMensaje(j.toString());
+            }
+            else System.out.println("HOLA");            
+        }
+        else{
+            int seleccion = JOptionPane.showConfirmDialog (null,"¿Desea seguir jugando?", "Has Presionado Espacio" ,JOptionPane.YES_NO_OPTION);
+            if(seleccion == JOptionPane.YES_OPTION) {
+                GenerarMatrizInicial();
+                frutas=199;
+                int [][] pacmanReset={{1,1,3},{1,2,4},{1,3,3},{2,1,3},{2,2,3},{2,3,3},{3,1,3},{3,2,3},{3,3,3}};
+                pacman=pacmanReset;
+            }
+            else
+                System.exit(0);
+        }
+        RevisaGane();
+        //System.out.println(o1); 
+    }
+    
+    
+    private void RevisaGane(){
+        if (frutas==0){
+            int seleccion = JOptionPane.showConfirmDialog (null,"¿Desea jugar de nuevo?", "Has Ganado" ,JOptionPane.YES_NO_OPTION);
+            if(seleccion == JOptionPane.YES_OPTION) {
+                GenerarMatrizInicial();
+                frutas=199;
+                int [][] pacmanReset={{1,1,3},{1,2,4},{1,3,3},{2,1,3},{2,2,3},{2,3,3},{3,1,3},{3,2,3},{3,3,3}};
+                pacman=pacmanReset;
+            }
+            else
+                System.exit(0);
+        }
     }
     
     
