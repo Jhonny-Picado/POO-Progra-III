@@ -6,7 +6,6 @@
 package Controlador;
 
 import Sockets.Cliente;
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileReader;
@@ -68,15 +67,7 @@ public class Controlador extends JFrame implements KeyListener{
     @Override
     public void keyReleased(KeyEvent ke) {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.  
-    }
-    
-    private JSONObject coversion(String mensaje){
-        JSONObject json= new JSONObject();
-        
-        json.put("direccion", mensaje);
-        return json;
-    }
-    
+    }    
     
     //Lee el JSON y lo deja en el array a usar más arriba
     private static void readJson(){

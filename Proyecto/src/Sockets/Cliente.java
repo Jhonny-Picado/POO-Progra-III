@@ -27,7 +27,7 @@ public class Cliente{
         public void EnviarMensaje(String mensaje){
             try {
                 Socket sc = new Socket(HOST, puerto);
-                out = new DataOutputStream (sc.getOutputStream());
+                out = new DataOutputStream (sc.getOutputStream());                
                 out.writeUTF(mensaje);
                 sc.close();
                 

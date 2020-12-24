@@ -8,6 +8,7 @@ package Vista;
 import Sockets.Servidor;
 
 import java.awt.Color;
+import static java.awt.Color.*;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
@@ -44,6 +45,7 @@ public class Pantalla extends JFrame implements Observer{
         server.addObserver(this);
     }
     
+    
     //Metodo que genera la matriz del programa
     public void generarMatriz(JPanel interfaz) {
         
@@ -54,20 +56,19 @@ public class Pantalla extends JFrame implements Observer{
                 btnNuevo.setOpaque(true);
                 btnNuevo.setBackground(Color.BLACK);
                 Casillas[i][j]=btnNuevo;
-                       
-                if (i==49 && j ==49){
-                    Casillas[i][j].setBackground(Color.yellow);
-                }
                 interfaz.add(Casillas[i][j]);
             }
         }
         interfaz.setLayout(new GridLayout(50, 50));
     }
-    
+       
     
     public void ModificarPixeles(String mensaje){
-        //Casillas[fila][columna].setBackground(color);
+        
+        Color Colores[]={red,blue,gray,white,cyan,orange};
+        Casillas[1][1].setBackground(Colores[(int)(Math.random()*5)]);
         System.out.println("SI LLEGO : "+ mensaje);
+        
     }
 
     @Override

@@ -43,13 +43,13 @@ public class Servidor extends Observable implements Runnable{
 
                 in = new DataInputStream(socket.getInputStream());
 
-                Object mensaje = in.readUTF();
+                Object mensaje = in.readUTF();                
                 
                 this.setChanged();
                 this.notifyObservers(mensaje);
                 this.clearChanged();
                 socket.close();
-                  
+
             }
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
