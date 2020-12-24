@@ -34,7 +34,6 @@ public class Servidor extends Observable implements Runnable{
         ServerSocket servidor;
         Socket socket;
         DataInputStream in;
-        DataOutputStream out;
 
         try {
             servidor = new ServerSocket(puerto);
